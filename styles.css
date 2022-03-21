@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+/* Table of Contents */
+
+/* Calculator Styling */
+/* Buttons */
+/* Button IDs */
+/* On-Off Toggle */
+/* Extra Styling */
+
+:root {
+    font-family: 'Roboto Mono', monospace;
+    box-sizing: border-box;
+    --textColor: black;
+    --calculatorColor: rgb(114, 114, 114);
+    --calculatorShadowColor: rgb(53, 53, 53);
+    --displayColor: rgb(228, 236, 200);
+    --numberColor: beige;
+    --numberShadowColor:rgb(207, 207, 186);
+    --functionColor: rgb(63, 63, 63);
+    --functionShadowColor: rgb(36, 36, 36);
+    --clearColor: rgb(248, 61, 86);
+    --clearShadowColor: rgb(172, 17, 63);
+    --equalsColor: gold;
+    --equalsShadowColor: rgb(206, 175, 1);
+    --offColor: lightgray;
+    --borderRadius: 0.125em;
+    --buttonBorder: black;
+    --transitionSpeed: 0.2s;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    text-shadow: 
+        1px 1px var(--functionShadowColor),
+        2px 2px var(--functionShadowColor);
+}
+
+/* Calculator Styling */
+.container {
+    background-color: var(--calculatorColor);
+    width: 300px;
+    height: 450px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 2fr 1fr repeat(5, 2fr);
+    grid-template-areas: 
+        "equation equation equation equation equation"
+        "display display display display display"
+        "content-left content-left content-left content-right content-right"
+        "allClear clear plusMinus exponent square"
+        "seven eight nine multiplication sqrt"
+        "four five six division factorial"
+        "one two three subtraction equals"
+        "doubleZero zero decimal addition equals";
+    margin: 2em auto;
+    padding: 1em 1em 1em 1em;
+    border: 1px solid var(--textColor);
+    border-radius: 1em;
+    box-shadow: 
+        1px 1px var(--calculatorShadowColor),
+        2px 2px var(--calculatorShadowColor),
+        3px 3px var(--calculatorShadowColor),
+        4px 4px var(--textColor),
+        5px 5px var(--calculatorShadowColor),
+        6px 6px var(--calculatorShadowColor),
+        7px 7px var(--calculatorShadowColor),
+        8px 8px var(--textColor);
+}
+
+.equation {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 1em;
+    margin: 0.5em 0.5em 0 0.5em;
+    grid-area: equation;
+    background-color: var(--displayColor);
+    flex-wrap: nowrap;
+    box-shadow: 
+        inset 3px 3px var(--textColor),
+        inset -1px 0px var(--textColor);
+}
+
+.display {
+    position: relative;
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow-wrap: anywhere;    
+    padding: 0 1rem;
+    margin: 0 0.5rem 0.5rem 0.5rem;
+    grid-area: display;
+    background-color: var(--displayColor);
+    box-shadow: 
+        inset 3px -1px var(--textColor),
+        inset -1px 0px var(--textColor);
+}
+
+.off {
+    background-color: var(--offColor);
+    color: var(--offColor);
+    user-select: none;
+}
+
+.contentLeft {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0.5em;
+    padding-left: 0.5em;
+    grid-area: content-left;
+}
+
+.contentRight {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0.5em;
+    grid-area: content-right;
+}
+
+/* Buttons */
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+    cursor: pointer;
+    border-radius: var(--borderRadius);
+}
+
+.empty {
+    background-color: var(--clearColor);
+    border: 1px solid var(--functionShadowColor);
+    box-shadow: 
+        1px 1px var(--clearShadowColor),
+        2px 2px var(--clearShadowColor),
+        3px 3px var(--clearShadowColor),
+        4px 4px var(--clearShadowColor);
+}
+
+.empty:hover,
+.empty:focus {
+    background-color: var(--clearShadowColor);
+    }
+
+.empty:active {
+    transform: translate3d(3px, 3px, 0);
+    box-shadow: 
+        1px 1px var(--clearShadowColor);
+    }
+
+.functions {
+    background-color: var(--functionColor);
+    color: white;
+    border: 1px solid var(--functionShadowColor);
+    box-shadow: 
+        1px 1px var(--functionShadowColor),
+        2px 2px var(--functionShadowColor),
+        3px 3px var(--functionShadowColor),
+        4px 4px var(--functionShadowColor);
+}
+
+.functions:hover,
+.functions:focus {
+    background-color: var(--functionShadowColor);
+    }
+
+.functions:active {
+    transform: translate3d(3px, 3px, 0);
+    box-shadow: 
+        1px 1px var(--functionShadowColor);
+    }
+
+.number {
+    background-color: var(--numberColor);
+    border: 1px solid var(--functionShadowColor);
+    box-shadow: 
+        1px 1px var(--numberShadowColor),
+        2px 2px var(--numberShadowColor),
+        3px 3px var(--numberShadowColor),
+        4px 4px var(--numberShadowColor);
+}
+
+.number:hover,
+.number:focus {
+    background-color: var(--numberShadowColor);
+    }
+
+.number:active {
+    transform: translate3d(3px, 3px, 0);
+    box-shadow: 
+        1px 1px var(--numberShadowColor);
+    }
+
+/* Button IDs */
+#allClear {
+    grid-area: allClear;
+}
+
+#clear {
+    grid-area: clear;
+}
+
+#plusMinus {
+    grid-area: plusMinus;
+}
+
+#exponent {
+    grid-area: exponent;
+}
+
+#square {
+    grid-area: square;
+}
+
+#seven {
+    grid-area: seven;
+}
+
+#eight {
+    grid-area: eight;
+}
+
+#nine {
+    grid-area: nine;
+}
+
+#multiplication {
+    grid-area: multiplication;
+}
+
+#sqrt {
+    grid-area: sqrt;
+}
+
+#four {
+    grid-area: four;
+}
+
+#five {
+    grid-area: five;
+}
+
+#six {
+    grid-area: six;
+}
+
+#division {
+    grid-area: division;
+}
+
+#factorial {
+    grid-area: factorial;
+}
+
+#one {
+    grid-area: one;
+}
+
+#two {
+    grid-area: two;
+}
+
+#three {
+    grid-area: three;
+}
+
+#subtraction {
+    grid-area: subtraction;
+}
+
+#doubleZero {
+    grid-area: doubleZero;
+}
+
+#zero {
+    grid-area: zero;
+}
+
+#decimal {
+    grid-area: decimal;
+}
+
+#addition {
+    grid-area: addition;
+}
+
+#equals {
+    grid-area: equals;
+}
+
+/* On-Off Toggle */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 2.75em;
+    height: 1.5em;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle span {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--offColor);
+    border-radius: var(--borderRadius);
+    transition: var(--transitionSpeed);
+    box-shadow: 0 0 2px black inset;
+    box-shadow: 
+        inset 1px 1px var(--textColor),
+        inset -1px 0px var(--textColor);
+}
+
+.toggle span::before {
+    position: absolute;
+    content: "";
+    height: 1.125em;
+    width: 1.125em;
+    left: 0.125em;
+    bottom: 0.125em;
+    background-color: var(--numberColor);
+    border-radius: var(--borderRadius);
+    transition: var(--transitionSpeed);
+    transition-timing-function: cubic-bezier(.7, .8, .9, 0);
+    border: 1px solid var(--textColor);
+    box-shadow: 
+        1px 1px var(--textColor);
+}
+
+.toggle input:checked + span {
+    background-color: var(--clearColor);
+}
+
+.toggle input:checked + span:before {
+    transform: translateX(1.25em);
+    box-shadow: 
+        0px 0px var(--textColor)
+}
+
+/* Extra Styling */
+.super {
+    padding-bottom: 1em;
+}
